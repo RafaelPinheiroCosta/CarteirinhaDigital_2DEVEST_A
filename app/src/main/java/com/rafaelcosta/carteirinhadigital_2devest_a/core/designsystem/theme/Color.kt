@@ -1,4 +1,4 @@
-package com.rafaelcosta.carteirinhadigital_2devest_a.ui.theme
+package com.rafaelcosta.carteirinhadigital_2devest_a.core.designsystem.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF6D5E0F)

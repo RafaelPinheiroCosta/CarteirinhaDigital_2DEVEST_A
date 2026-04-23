@@ -1,4 +1,4 @@
-package com.rafaelcosta.carteirinhadigital_2devest_a
+package com.rafaelcosta.carteirinhadigital_2devest_a.feature.carteirinha.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -21,12 +21,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rafaelcosta.carteirinhadigital_2devest_a.ui.theme.CarteirinhaDigital_2DEVESTATheme
+import com.rafaelcosta.carteirinhadigital_2devest_a.R
+import com.rafaelcosta.carteirinhadigital_2devest_a.core.designsystem.theme.CarteirinhaDigital_2DEVESTATheme
 import com.rafaelcosta.carteirinhadigital_4devm_t1.feature.carteirinha.presentation.component.QrCode
 
 
 @Composable
-fun CarteirinhaScreen(modifier: Modifier = Modifier) {
+fun CarteirinhaScreen(
+    modifier: Modifier = Modifier,
+    onBackClick: () -> Unit = {}
+) {
     Box {
         Image(
             painter = painterResource(id = R.drawable.fundo),
