@@ -31,6 +31,11 @@ fun LoginScreen(
     navController: NavController
 ) {
     var login by remember { mutableStateOf("") };
+    var senha by remember { mutableStateOf("") };
+    var erroLogin by remember { mutableStateOf(false) };
+
+    var labelEmail by remember { mutableStateOf("email") };
+    var labelSenha by remember { mutableStateOf("senha") };
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -40,17 +45,37 @@ fun LoginScreen(
         Text("Login")
         TextField(
             value = login,
-            onValueChange = {login = it},
-            label = { Text("email") }
+            onValueChange = {
+                login = it
+                erroLogin=false
+                labelEmail="email"
+                labelSenha="senha"
+            },
+            label = { Text(labelEmail) },
+            isError = erroLogin
         )
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
-            label = { Text("senha") }
+            value = senha,
+            onValueChange = {
+                senha = it
+                erroLogin=false
+                labelSenha="senha"
+                labelEmail="email"
+            },
+            label = { Text(labelSenha) },
+            isError = erroLogin
         )
         Button(
             onClick = {
-                navController.navigate(Routes.Carteirinha)
+                if (login == "admin" && senha == "123") {
+                    erroLogin = false
+
+                    navController.navigate(Routes.Carteirinha)
+                } else {
+                    erroLogin = true
+                    labelEmail = "email ou senha incorretos"
+                    labelSenha = labelEmail
+                }
             },
 
             colors = ButtonDefaults.buttonColors(
