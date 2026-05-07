@@ -13,17 +13,25 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.rafaelcosta.carteirinhadigital_2devest_a.app.navigation.Routes
 import com.rafaelcosta.carteirinhadigital_2devest_a.core.designsystem.theme.CarteirinhaDigital_2DEVESTATheme
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
-    onLoginClick: () -> Unit = {}
+    navController: NavController
 ) {
+    var login by remember { mutableStateOf("") };
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -31,8 +39,8 @@ fun LoginScreen(
     ) {
         Text("Login")
         TextField(
-            value = "",
-            onValueChange = {},
+            value = login,
+            onValueChange = {login = it},
             label = { Text("email") }
         )
         OutlinedTextField(
@@ -41,7 +49,10 @@ fun LoginScreen(
             label = { Text("senha") }
         )
         Button(
-            onClick = onLoginClick,
+            onClick = {
+                navController.navigate(Routes.Carteirinha)
+            },
+
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = MaterialTheme.colorScheme.onPrimary
@@ -66,7 +77,7 @@ fun LoginScreen(
 @Composable
 fun LoginScreenPreview() {
     CarteirinhaDigital_2DEVESTATheme {
-        LoginScreen()
+        //LoginScreen()
     }
 }
 
@@ -79,6 +90,6 @@ fun LoginScreenPreviewDark() {
     CarteirinhaDigital_2DEVESTATheme(
         darkTheme = true
     ) {
-        LoginScreen()
+        //LoginScreen()
     }
 }
